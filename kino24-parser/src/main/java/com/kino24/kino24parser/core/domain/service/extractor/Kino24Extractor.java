@@ -54,7 +54,7 @@ public class Kino24Extractor {
     private void extractNews() {
         LOG.info("Started extracting kino24 news");
 
-        WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("headless"));
+        WebDriver driver = new ChromeDriver(new ChromeOptions()/*.addArguments("headless")*/);
 
         var articlesByTitle = categoryToPageMapping.keySet().stream()
                 .map(category -> extractArticles(driver, category))
@@ -79,7 +79,7 @@ public class Kino24Extractor {
     private List<Kino24Article> extractArticles(WebDriver driver, String category) {
         driver.get(categoryToPageMapping.get(category));
 
-        Thread.sleep(2500);
+        Thread.sleep(2000);
 
         var articles = driver
                 .findElements(By.cssSelector(NEWS_ITEM_CSS_SELECTOR))
