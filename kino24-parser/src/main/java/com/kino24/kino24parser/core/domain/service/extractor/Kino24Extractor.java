@@ -79,7 +79,7 @@ public class Kino24Extractor {
     private List<Kino24Article> extractArticles(WebDriver driver, String category) {
         driver.get(categoryToPageMapping.get(category));
 
-        Thread.sleep(3500);
+        Thread.sleep(2500);
 
         var articles = driver
                 .findElements(By.cssSelector(NEWS_ITEM_CSS_SELECTOR))
