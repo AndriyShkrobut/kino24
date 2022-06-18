@@ -1,0 +1,12 @@
+kino24:
+    url: https://kino.24tv.ua
+    pages:
+      movies: ${kino24.url}/filmi_tag8351
+      series: ${kino24.url}/seriali_tag8350
+
+
+redis:
+  key:
+    latest-news: latest-news
+  stream:
+    news-events: kino24-news-events
