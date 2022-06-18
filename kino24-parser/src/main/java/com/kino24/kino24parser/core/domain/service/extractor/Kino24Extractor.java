@@ -10,8 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -79,6 +77,10 @@ public class Kino24Extractor {
     private List<Kino24Article> extractArticles(WebDriver driver, String category) {
         driver.get(categoryToPageMapping.get(category));
 
+        synchronized (driver) {
+            driver.wait(1000);
+        }
+
         var articles = driver
                 .findElements(By.cssSelector(NEWS_ITEM_CSS_SELECTOR))
                 .stream()
@@ -88,7 +90,6 @@ public class Kino24Extractor {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
-
     }
 
     private Optional<Kino24Article> mapToArticleOpt(WebElement articleElement, String category) {
