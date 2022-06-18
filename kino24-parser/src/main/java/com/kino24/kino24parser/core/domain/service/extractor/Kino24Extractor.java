@@ -49,7 +49,7 @@ public class Kino24Extractor {
         );
     }
 
-    @Scheduled(fixedDelay = 5, timeUnit = TimeUnit.MINUTES)
+    @Scheduled(fixedDelay = 30, timeUnit = TimeUnit.MINUTES)
     @SneakyThrows
     private void extractNews() {
         LOG.info("Started extracting kino24 news");
