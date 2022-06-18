@@ -54,7 +54,7 @@ public class Kino24Extractor {
     private void extractNews() {
         LOG.info("Started extracting kino24 news");
 
-        WebDriver driver = new ChromeDriver(new ChromeOptions()/*.addArguments("headless")*/);
+        WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("headless"));
 
         var articlesByTitle = categoryToPageMapping.keySet().stream()
                 .map(category -> extractArticles(driver, category))
