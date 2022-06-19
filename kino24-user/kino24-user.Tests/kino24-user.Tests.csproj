@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kino24-user.core\kino24-user.core.csproj" />
+    <ProjectReference Include="..\kino24-user.core\kino24-user.Core.csproj" />
     <ProjectReference Include="..\kino24-user\kino24-user.csproj" />
   </ItemGroup>
 

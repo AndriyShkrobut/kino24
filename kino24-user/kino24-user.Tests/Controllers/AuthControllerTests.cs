@@ -1,8 +1,9 @@
-﻿using kino24_user.BL.DTO.Account;
+﻿using kino24_user.BL.DTO.UserAuthentication;
 using kino24_user.BL.Interfaces;
+using kino24_user.BL.Interfaces.Auth;
 using kino24_user.BL.Interfaces.Jwt;
 using kino24_user.Controllers;
-using kino24_user.Core.Entities;
+using kino24_user.core.Entities.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
