@@ -1,0 +1,52 @@
+name: Test & Build [kino24-user]
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'kino24-user/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'kino24-user/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      - name: Test
+        run: |
+          cd kino24-user/kino24-user.Tests
+          dotnet restore
+          dotnet build --no-restore
+          dotnet test --no-build --verbosity normal
+  publish-docker-image:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: kino24-user/
+          file: kino24-user/Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kino24-user:${{ github.run_number }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kino24-user:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kino24-user:buildcache,mode=max

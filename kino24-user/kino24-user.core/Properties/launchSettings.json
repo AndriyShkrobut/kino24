@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "kino24-user.core": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
