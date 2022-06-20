@@ -1,4 +1,4 @@
-name: Test & Build [kino24-news-red]
+name: Test & Build [kino24-news-read]
 
 on:
   push:
