@@ -1,0 +1,103 @@
+type Query {
+    articles(
+        page:Int! = 0, size:Int! = 30,
+        orderBy:ArticlesOrderByInput! = {},
+        filterBy: ArticlesFilterByInput! = {}
+    ): ArticlesPage!
+    authors(page:Int! = 0, size:Int! = 30, search:String): AuthorsPage!
+    publishers(page:Int! = 0, size:Int! = 30, search:String): PublishersPage!
+}
+
+type Subscription {
+    notification (token: String!): Notification
+}
+
+input ArticlesFilterByInput {
+    id: ID
+    author: String
+    publisher: String
+    categories: [ArticleCategory]
+    strategy: FilterStrategy! = ALL_MATCH
+}
+
+enum FilterStrategy {
+    ALL_MATCH, ANY_MATCH
+}
+
+input ArticlesOrderByInput {
+    timestamp: SortDirection! = DESC
+}
+
+enum SortDirection {
+    ASC, DESC
+}
+
+type Article {
+    id: ID!
+    title: String!
+    publicationDate: String
+    author: String
+    publisher: String
+    imageLink: String
+    content: String!
+    linkToOriginal: String
+    categories: [ArticleCategory]!
+    timestamp: Timestamp
+    likedByMe: Boolean!
+    likesCount: Int!
+    commentsCount: Int!
+    comments (page:Int! = 0, size:Int! = 30): CommentsPage!
+}
+
+type ArticlesPage {
+    totalElements: Int!
+    totalPages: Int!
+    content: [Article]!
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    author: User
+    timestamp: Timestamp
+    likedByMe: Boolean!
+    likesCount: Int!
+}
+
+type CommentsPage {
+    totalElements: Int!
+    totalPages: Int!
+    content: [Comment]!
+}
+
+type User {
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+}
+
+type Notification {
+    id: ID!
+    type: String
+    payload: String
+    timestamp: Timestamp
+}
+
+type AuthorsPage {
+    totalElements: Int!
+    totalPages: Int!
+    content: [String]!
+}
+
+type PublishersPage {
+    totalElements: Int!
+    totalPages: Int!
+    content: [String]!
+}
+
+enum ArticleCategory {
+    MOVIES, SERIES
+}
+
+scalar Timestamp

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="001-articles-table" author="rboiarchuk">
+        <sql>
+            set time zone 'UTC';
+        </sql>
+        <createTable tableName="articles">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publication_date" type="varchar"/>
+            <column name="author" type="varchar"/>
+            <column name="publisher" type="varchar"/>
+            <column name="image_link" type="varchar"/>
+            <column name="content" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link_to_original" type="varchar"/>
+            <column name="timestamp" type="timestamp" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="article_category">
+            <column name="article_id" type="uuid"/>
+            <column name="category" type="varchar"/>
+        </createTable>
+        <addPrimaryKey tableName="article_category" columnNames="article_id, category"/>
+    </changeSet>
+    <changeSet id="002-likes-comments-tables" author="rboiarchuk">
+        <createTable tableName="comments">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="uuid"/>
+            <column name="author_first_name" type="varchar"/>
+            <column name="author_last_name" type="varchar"/>
+            <column name="author_email" type="varchar"/>
+            <column name="article_id" type="uuid">
+                <constraints foreignKeyName="comment_article_id_fk"
+                             referencedTableName="articles"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="create_timestamp" type="timestamp" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="edit_timestamp" type="timestamp" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="likes">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="article_id" type="uuid">
+                <constraints foreignKeyName="like_article_id_fk"
+                             referencedTableName="articles"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="comment_id" type="uuid">
+                <constraints foreignKeyName="like_comment_id_fk"
+                             referencedTableName="comments"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="timestamp" type="timestamp" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="003-change-columns" author="rboiarchuk">
+        <renameColumn tableName="comments" oldColumnName="create_timestamp" newColumnName="timestamp"/>
+        <dropColumn tableName="comments" columnName="edit_timestamp"/>
+        <dropColumn tableName="comments" columnName="author_email"/>
+        <createTable tableName="notifications">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_first_name" type="varchar"/>
+            <column name="payload" type="text"/>
+            <column name="timestamp" type="timestamp" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="004-add-missing-column" author="rboiarchuk">
+        <addColumn tableName="notifications">
+            <column name="type" type="varchar"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="005-add-missing-column" author="rboiarchuk">
+        <addColumn tableName="likes">
+            <column name="user_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
