@@ -1,4 +1,4 @@
-name: Test & Build [kino24-like]
+name: kino24-like
 
 on:
   push:

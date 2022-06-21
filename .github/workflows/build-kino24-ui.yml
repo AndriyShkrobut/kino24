@@ -1,4 +1,4 @@
-name: Lint & Test & Build [kino24-ui]
+name: kino24-ui
 
 on:
   push:

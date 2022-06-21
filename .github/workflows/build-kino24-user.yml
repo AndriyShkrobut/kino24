@@ -1,4 +1,4 @@
-name: Test & Build [kino24-user]
+name: kino24-user
 
 on:
   push:

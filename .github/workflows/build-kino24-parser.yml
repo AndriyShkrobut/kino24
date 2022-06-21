@@ -1,4 +1,4 @@
-name: Test & Build [kino24-parser]
+name: kino24-parser
 
 on:
   push:
