@@ -29,7 +29,7 @@ namespace kino24_like.BL.Streaming
                 new NameValueEntry("payload", payload)
             };
 
-            await _db.StreamAddAsync("feedback-events-v1", values);
+            await _db.StreamAddAsync("kino24-feedback-events", values);
         }
     }
 }
