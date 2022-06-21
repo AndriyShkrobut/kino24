@@ -9,7 +9,7 @@ namespace kino24_like.StartupExtensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("V1", new OpenApiInfo { Title = "IMDB-feedbackService", Version = "V1" });
+                c.SwaggerDoc("V1", new OpenApiInfo { Title = "Kino24 Like", Version = "V1" });
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
                     {"Bearer", new string[] { }},
