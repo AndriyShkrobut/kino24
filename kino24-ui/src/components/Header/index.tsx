@@ -31,7 +31,7 @@ const Header: React.FC = () => {
                             </Box>
                         ) : (
                             <Button variant="outlined" color="inherit" onClick={handleOpenSignIn}>
-                                Увійти
+                                Зайти в обліковий запис
                             </Button>
                         )}
                     </Box>

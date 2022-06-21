@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addLike, removeLike } from 'actions/userActions';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 
 export interface IArticleActions {
     articleId: string;
@@ -30,7 +30,7 @@ const ArticleActions: React.FC<IArticleActions> = ({ articleId, likedByMe, likes
     return (
         <Box>
             <Button
-                startIcon={currLikedByMe ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                startIcon={currLikedByMe ? <ThumbUpIcon /> : <ThumbUpAltOutlinedIcon />}
                 onClick={handleOnClickLike}
             >
                 {currLikesCount}
