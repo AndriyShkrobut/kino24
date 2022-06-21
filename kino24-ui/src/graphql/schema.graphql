@@ -1,0 +1,109 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    subscription: Subscription
+}
+
+type Article {
+    author: String
+    categories: [ArticleCategory]!
+    comments(page: Int! = 0, size: Int! = 30): CommentsPage!
+    commentsCount: Int!
+    content: String!
+    id: ID!
+    imageLink: String
+    likedByMe: Boolean!
+    likesCount: Int!
+    linkToOriginal: String
+    publicationDate: String
+    publisher: String
+    timestamp: Timestamp
+    title: String!
+}
+
+type ArticlesPage {
+    content: [Article]!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type AuthorsPage {
+    content: [String]!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type Comment {
+    author: User
+    id: ID!
+    likedByMe: Boolean!
+    likesCount: Int!
+    text: String!
+    timestamp: Timestamp
+}
+
+type CommentsPage {
+    content: [Comment]!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type Notification {
+    id: ID!
+    payload: String
+    timestamp: Timestamp
+    type: String
+}
+
+type PublishersPage {
+    content: [String]!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type Query {
+    articles(filterBy: ArticlesFilterByInput! = {strategy: ALL_MATCH}, orderBy: ArticlesOrderByInput! = {timestamp: DESC}, page: Int! = 0, size: Int! = 30): ArticlesPage!
+    authors(page: Int! = 0, search: String, size: Int! = 30): AuthorsPage!
+    publishers(page: Int! = 0, search: String, size: Int! = 30): PublishersPage!
+}
+
+type Subscription {
+    notification(token: String!): Notification
+}
+
+type User {
+    email: String
+    firstName: String
+    id: ID!
+    lastName: String
+}
+
+enum ArticleCategory {
+    MOVIES
+    SERIES
+}
+
+enum FilterStrategy {
+    ALL_MATCH
+    ANY_MATCH
+}
+
+enum SortDirection {
+    ASC
+    DESC
+}
+
+scalar Timestamp
+
+input ArticlesFilterByInput {
+    author: String
+    categories: [ArticleCategory]
+    id: ID
+    publisher: String
+    strategy: FilterStrategy! = ALL_MATCH
+}
+
+input ArticlesOrderByInput {
+    timestamp: SortDirection! = DESC
+}
