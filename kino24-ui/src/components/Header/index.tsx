@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         getId();
     }, [loggedIn]);
     return (
-        <AppBar position={'static'} enableColorOnDark>
+        <AppBar position={'fixed'} enableColorOnDark>
             <Container>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
                     <Logo />

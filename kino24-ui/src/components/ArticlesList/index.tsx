@@ -10,7 +10,8 @@ interface IArticlesListProps {
 const ArticlesList: React.FC<IArticlesListProps> = ({ articles }) => {
     return (
         <Grid
-            my={2}
+            mt={8}
+            mb={2}
             justifyContent={'space-between'}
             alignItems={'start'}
             spacing={2}
