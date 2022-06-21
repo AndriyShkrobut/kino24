@@ -1,0 +1,54 @@
+name: Lint & Test & Build [kino24-ui]
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'kino24-ui/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'kino24-ui/**'
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up NodeJS 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - working-directory: ./kino24-ui
+        run: npm install
+      - name: Lint
+        working-directory: ./kino24-ui
+        run: npm run lint
+      - name: Test
+        working-directory: ./kino24-ui
+        run: npm run test:ci
+  publish-docker-image:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: [ lint-test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: kino24-ui/
+          file: kino24-ui/Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kino24-ui:${{ github.run_number }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kino24-ui:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kino24-ui:buildcache,mode=max
