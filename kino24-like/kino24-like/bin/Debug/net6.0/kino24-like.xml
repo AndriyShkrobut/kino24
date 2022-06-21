@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>kino24-like</name>
+    </assembly>
+    <members>
+        <member name="M:kino24_like.Controllers.CommentController.AddCommentAsync(kino24_like.BL.Models.CommentArticleAddComand)">
+            <summary>
+            Method for adding comment for article
+            </summary>
+            <param name="itemId">ArticleId to add comment</param>
+            <param name="text">Comment text</param>
+            <returns>Result of adding comment</returns>
+            <returns>Answer from backend for adding comment method</returns>
+            <response code="200">Successful operation</response>
+            <response code="404">Item not found</response>
+            <response code="400">Problems with adding comment</response>
+        </member>
+        <member name="M:kino24_like.Controllers.CommentController.RemoveCommentAsync(kino24_like.BL.Models.CommentArticleRemoveComand)">
+            <summary>
+            Method for removing comment for article
+            </summary>
+            <param name="commentId">CommentId to remove</param>
+            <returns>Result of removing comment</returns>
+            <returns>Answer from backend for removing comment method</returns>
+            <response code="200">Successful operation</response>
+            <response code="404">Item not found</response>
+            <response code="400">Problems with removing comment</response>
+        </member>
+        <member name="M:kino24_like.Controllers.LikeArticleController.AddLikeAsync(kino24_like.BL.Models.LikeArticleAddComand)">
+            <summary>
+            Method for adding like for article
+            </summary>
+            <param name="articleId">ArticleId to add like</param>
+            <returns>Result of adding like</returns>
+            <returns>Answer from backend for adding like method</returns>
+            <response code="200">Successful operation</response>
+            <response code="404">Item not found</response>
+            <response code="400">Problems with adding like</response>
+        </member>
+        <member name="M:kino24_like.Controllers.LikeArticleController.RemoveLikeAsync(kino24_like.BL.Models.LikeArticleRemoveComand)">
+            <summary>
+            Method for removing like for article
+            </summary>
+            <param name="articleId">ArticleId to remove like</param>
+            <returns>Result of removing like</returns>
+            <returns>Answer from backend for removing like method</returns>
+            <response code="200">Successful operation</response>
+            <response code="404">Item not found</response>
+            <response code="400">Problems with adding like</response>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:kino24_like.Controllers.LikeCommentController.AddLikeAsync(kino24_like.BL.Models.LikeCommentAddComand)" -->
+        <member name="M:kino24_like.Controllers.LikeCommentController.RemoveLikeAsync(kino24_like.BL.Models.LikeCommentRemoveComand)">
+            <summary>
+            Method for removing like for article
+            </summary>
+            <param name="commentId">CommentId to remove like</param>
+            <returns>Result of removing like</returns>
+            <returns>Answer from backend for removing like method</returns>
+            <response code="200">Successful operation</response>
+            <response code="404">Item not found</response>
+            <response code="400">Problems with adding like</response>
+        </member>
+    </members>
+</doc>

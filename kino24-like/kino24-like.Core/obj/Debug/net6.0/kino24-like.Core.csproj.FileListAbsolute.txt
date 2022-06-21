@@ -1,0 +1,14 @@
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/bin/Debug/net6.0/kino24-like.Core.deps.json
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/bin/Debug/net6.0/kino24-like.Core.runtimeconfig.json
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/bin/Debug/net6.0/kino24-like.Core.dll
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/bin/Debug/net6.0/ref/kino24-like.Core.dll
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/bin/Debug/net6.0/kino24-like.Core.pdb
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.csproj.AssemblyReference.cache
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.AssemblyInfoInputs.cache
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.AssemblyInfo.cs
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.csproj.CoreCompileInputs.cache
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.dll
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/ref/kino24-like.Core.dll
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.pdb
+/home/andrii/University/integration/kino24/kino24-like/kino24-like.Core/obj/Debug/net6.0/kino24-like.Core.genruntimeconfig.cache
